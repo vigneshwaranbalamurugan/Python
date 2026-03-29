@@ -1,0 +1,74 @@
+<html>
+<head>
+<title>Chat App</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="name-screen" class="screen active">
+  <div class="card">
+    <p>Enter your name to get started</p>
+    <input id="name-input" placeholder="Your name" maxlength="20">
+    <button class="btn-blue" onclick="submitName()">Continue</button>
+    <div class="error" id="name-err"></div>
+  </div>
+</div>
+
+<div id="home-screen" class="screen">
+  <div class="card">
+    <h2>Hello, <span id="display-name"></span>!</h2>
+    <p >What do you want to do?</p>
+    <button class="option-btn" onclick="show('join-screen')">
+      <span class="label">Join a Room</span>
+      <span class="sub">Chat with everyone in a named room</span>
+    </button>
+    <button class="option-btn" onclick="loadPrivate()">
+      <span class="label">Private Message</span>
+      <span class="sub">Send a direct message to someone</span>
+    </button>
+  </div>
+</div>
+
+<div id="join-screen" class="screen">
+  <div class="card">
+    <h2>Join a Room</h2>
+    <p>Enter a room name to join</p>
+    <input id="room-input" placeholder="Room name (e.g. general)" maxlength="30">
+    <button class="btn-blue" onclick="joinRoom()">Join Room</button>
+    <button onclick="show('home-screen')">Back</button>
+    <div class="error" id="room-err"></div>
+  </div>
+</div>
+
+<div id="private-screen" class="screen">
+  <div class="card">
+    <h2>Private Message</h2>
+    <p>Who do you want to message?</p>
+    <select id="user-select">
+      <option value="">Select a user…</option>
+    </select>
+    <button class="btn-blue" onclick="startDM()">Start Chat</button>
+    <button  onclick="show('home-screen')">Back</button>
+    <div class="error" id="dm-err"></div>
+  </div>
+</div>
+
+<div id="chat-screen" class="screen">
+  <div class="chat-wrap">
+    <div class="chat-header">
+      <span class="back" onclick="show('home-screen')">Back</span>
+      <span class="title" id="chat-title">Chat</span>
+      <span class="sub"  id="chat-sub"></span>
+    </div>
+    <div id="messages"></div>
+    <div id="typing-bar"></div>
+    <div class="input-row">
+      <input id="msg-input" placeholder="Type a message…" onkeydown="if(event.key==='Enter')sendMsg()" oninput="onTyping()">
+      <button type="button" onclick="sendMsg()">Send</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
