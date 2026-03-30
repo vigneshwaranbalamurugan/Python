@@ -19,15 +19,15 @@ class StringField(Field):
 
 class ForeignKeyField(Field):
     def __init__(self,name,ref_table,ref_column):
-        super.__init__(name,"Integer")
+        super().__init__(name,"INTEGER")
         self.ref_table=ref_table
         self.ref_column=ref_column
 
 class Model:
     @classmethod
     def create_table(cls):
-
         columns = []
+        foreign_keys = []
         for key, field in cls.__dict__.items():
             if isinstance(field, Field):
                 column_def = f"{field.name} {field.datatype}"
@@ -36,10 +36,12 @@ class Model:
                 if field.unique:
                     column_def += " UNIQUE"
                 columns.append(column_def)
+                if isinstance(field,ForeignKeyField):
+                    foreign_keys.append(f"FOREIGN KEY({field.name}) REFERENCES {field.ref_table}({field.ref_column})")
 
         query = f"""
         CREATE TABLE IF NOT EXISTS {cls.__name__.lower()}
-        ({', '.join(columns)})
+        ({', '.join(columns+foreign_keys)})
         """
 
         cursor.execute(query)
@@ -78,27 +80,56 @@ class Model:
     @classmethod
     def find(cls, column, value):
         query = f"SELECT * FROM {cls.__name__.lower()} WHERE {column}=?"
-        cursor.execute(query, (value,))
+        cursor.execute(query,(value,))
         return cursor.fetchall()
 
+    @classmethod
+    def findwithdept(cls,column,value):
+        query=f"SELECT * FROM {cls.__name__.lower()} JOIN department ON {cls.__name__.lower()}.dept_id=department.id WHERE {column}=?"
+        cursor.execute(query,(value,))
+        return cursor.fetchall()
+    
+    @classmethod
+    def delete(cls,column,value):
+        query=f"DELETE FROM {cls.__name__.lower()} WHERE {column}=?"
+        cursor.execute(query,(value,))
+        conn.commit()
 
 class User(Model):
     id = IntegerField("id",True,True)
     name = StringField("name",False,True)
     age = IntegerField("age")
+    dept_id = ForeignKeyField("dept_id", "department","id")
 
-
-    def __init__(self, id, name, age):
+    def __init__(self, id, name, age,dept_id):
         self.id = id
         self.name = name
         self.age = age
+        self.dept_id=dept_id
 
+class Department(Model):
+    id=IntegerField("id",True,True)
+    name = StringField("name",False,True)
 
+    def __init__(self,id,name):
+        self.id=id
+        self.name=name
+
+Department.create_table()
 User.create_table()
 
-user1 = User(3, "Vijay Bharath", 22)
-user1.save()
+dept=Department(2,"IT")
+dept.save()
+
+# user1 = User(1, "Vigneshwaran", 22,2)
+# user1.save()
 
 print(User.all())
-
+print(Department.all())
 print(User.find("name", "Vigneshwaran"))
+
+print(User.findwithdept("user.name","Vigneshwaran"))
+
+User.delete("id",3)
+# Department.delete("id",2)
+print(User.all())
