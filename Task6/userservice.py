@@ -8,4 +8,4 @@ def get_profile():
 
 @app.get("/list")
 def get_users():
-    return {"users": ["Ram", "Sam", "John"]}
+    return {"users": ["Vignesh", "Shriran", "Vijay"]}
