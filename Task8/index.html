@@ -1,0 +1,39 @@
+<html>
+<head>
+    <title>Real-Time Sensor Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Real-Time Sensor Monitoring Dashboard</h1>
+    </header>
+
+    <section class="dashboard">
+        <div class="card">
+            <h2>Temperature Sensor</h2>
+            <canvas id="tempChart"></canvas>
+            <p class="metric">
+                Moving Avg:
+                <span id="tempAvg">--</span>
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>Vibration Sensor</h2>
+            <canvas id="vibChart"></canvas>
+            <p class="metric">
+                Moving Avg:
+                <span id="vibAvg">--</span>
+            </p>
+        </div>
+    </section>
+
+    <section class="alerts">
+        <h2>Alert Log</h2>
+        <ul id="alertList"></ul>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>
