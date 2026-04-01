@@ -12,3 +12,7 @@ exponential backoff, dead-letter queues, and result backends.
 - Permanently failed tasks move to a dead-letter queue
 - Results stored in a backend (Redis/SQLite) for later retrieval
 - Dashboard view showing task status, retries, and duration
+
+# output
+
+![Output](Works.mp4)
