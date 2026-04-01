@@ -1,0 +1,15 @@
+let x=20
+let y = 8
+
+print(x+y)
+print(x-y)
+print(x*y)
+print(x/y)
+
+print(x+2*y)
+print(x*y+18/6)
+let i = 1
+while (i < 6) {
+    print(i)
+    i = i + 1
+}
