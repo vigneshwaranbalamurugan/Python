@@ -1,0 +1,14 @@
+pyproject.toml
+app/plugin.py
+app/plugin_base.py
+app/plugin_manager.py
+app/registry.py
+app.egg-info/PKG-INFO
+app.egg-info/SOURCES.txt
+app.egg-info/dependency_links.txt
+app.egg-info/entry_points.txt
+app.egg-info/top_level.txt
+app/plugins/dark_theme.py
+app/plugins/light_theme.py
+app/plugins/node_app.py
+app/plugins/react_app.py

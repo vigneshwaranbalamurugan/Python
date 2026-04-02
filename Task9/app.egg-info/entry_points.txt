@@ -1,0 +1,8 @@
+[app.plugins]
+dark_theme = plugins.dark_theme:DarkThemePlugin
+light_theme = plugins.light_theme:LightThemePlugin
+node_theme = plugins.node_app:NodePlugin
+react_theme = plugins.react_app:ReactPlugin
+
+[console_scripts]
+app = app.main:main

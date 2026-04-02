@@ -1,0 +1,15 @@
+[project]
+name = "app"
+version = "1.0.0"
+
+[project.scripts]
+app = "app.main:main"
+
+[project.entry-points."app.plugins"]
+light_theme = "app.plugins.light_theme:LightThemePlugin"
+dark_theme = "app.plugins.dark_theme:DarkThemePlugin"
+node_theme = "app.plugins.node_app:NodePlugin"
+react_theme = "app.plugins.react_app:ReactPlugin"
+
+[tool.setuptools.packages.find]
+exclude = ["myenv"]
