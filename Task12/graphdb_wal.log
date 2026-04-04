@@ -1,0 +1,5 @@
+{"type": "node", "data": {"label": "Person", "properties": {"name": "Vicky", "age": 30}}}
+{"type": "node", "data": {"label": "Person", "properties": {"name": "Maha", "age": 28}}}
+{"type": "node", "data": {"label": "Company", "properties": {"name": "Presidio"}}}
+{"type": "edge", "data": {"src_id": 1, "dst_id": 2, "label": "FRIENDS_WITH", "properties": {"since": 2021}}}
+{"type": "edge", "data": {"src_id": 2, "dst_id": 3, "label": "WORKS_AT", "properties": {"role": "Associate Engineer"}}}
