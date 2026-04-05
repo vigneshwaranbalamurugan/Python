@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Sales Report</title>
+    </head>
+
+<body>
+
+    <h1>Monthly Sales Report — {{ month }}</h1>
+    <h2>Summary</h2>
+    <p>Total Revenue: {{ revenue }}</p>
+    <p>Total Units: {{ units }}</p>
+
+    <h2>Revenue by Region</h2>
+
+    <img src="{{ region_chart }}" width="400">
+
+    <h2>Daily Trend</h2>
+
+    <img src="{{ daily_chart }}" width="400">
+
+
+    {% if warning %}
+    <h2 style="color:red;">
+    West region declined this month
+    </h2>
+    {% endif %}
+
+
+</body>
+</html>
