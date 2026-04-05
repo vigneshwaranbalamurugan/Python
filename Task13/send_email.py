@@ -12,8 +12,8 @@ RECEIVER_EMAIL = os.getenv("RECEIVER_EMAIL")
 def send_email(pdf_path):
     msg = EmailMessage()
     msg["Subject"] = "Monthly Sales Report"
-    msg["From"] = "SENDER_EMAIL"
-    msg["To"] = "RECEIVER_EMAIL"
+    msg["From"] = SENDER_EMAIL
+    msg["To"] = RECEIVER_EMAIL
     msg.set_content("Attached monthly sales report")
     with open(pdf_path, "rb") as f:
         msg.add_attachment(
